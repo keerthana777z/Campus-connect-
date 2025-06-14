@@ -86,6 +86,8 @@ Visit http://localhost:3000 in your browser.
 <img width="1224" alt="Screenshot 2025-06-14 at 7 52 30 PM" src="https://github.com/user-attachments/assets/faa2c541-2eb6-4316-9ec7-b88e7ebc3a66" />
 <img width="1460" alt="Screenshot 2025-06-14 at 7 56 34 PM" src="https://github.com/user-attachments/assets/55fe7008-374c-425e-b002-3800acea6280" />
 <img width="1322" alt="Screenshot 2025-06-14 at 7 52 53 PM" src="https://github.com/user-attachments/assets/68d3fe46-f642-4bed-a17b-60858c97cabd" />
+<img width="1023" alt="Screenshot 2025-06-14 at 7 57 26 PM" src="https://github.com/user-attachments/assets/8fcfdf6c-5b56-4101-a1db-4505954aa261" />
+
 
 
 
