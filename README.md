@@ -14,6 +14,41 @@
 - 🌐 **Live Deployment Ready**: Deployed on Render.
 
 ---
+## 🎨 CSS and Styling
+
+The visual appearance of **Campus Connect** is crafted using a custom CSS file that ensures the platform looks clean, modern, and user-friendly across all screen sizes.
+
+### 📁 File: `style.css`
+
+Key styling features:
+
+- ✅ **Responsive Layout**  
+  The interface is fully responsive using Flexbox and media queries, allowing seamless experience across desktops, tablets, and mobile devices.
+
+- ✅ **Elegant Typography**  
+  The project uses the `Poppins` font from Google Fonts for a sleek and consistent reading experience.
+
+- ✅ **Vibrant Color Palette**  
+  A minimalistic and youthful color scheme was chosen to suit the campus vibe, focusing on readability and aesthetic appeal.
+
+- ✅ **Interactive Buttons**  
+  Buttons like “Search Notes”, “Upload Notes”, and “View Uploaded Notes” are prominently placed, with hover effects and smooth transitions to enhance usability.
+
+- ✅ **Carousel Styling**  
+  The homepage includes a looping carousel with continuous image sliding, styled to fit within the layout cleanly with no visual lag or space issues.
+
+- ✅ **Custom UI Components**  
+  Input fields, tabs, and forms have custom styling applied to maintain a cohesive design language throughout the platform.
+
+### 💡 Styling Principles Followed
+
+- Minimal external dependencies
+- Mobile-first design approach
+- Reusable class patterns for maintainability
+- Cross-browser compatibility
+- Clean structure optimized for performance
+Feel free to explore the `style.css` file to understand how visual consistency is maintained throughout the application.
+
 
 ## 🛠️ Technologies Used
 
