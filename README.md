@@ -62,7 +62,7 @@ PORT=3000
 MONGO_URI=your-mongodb-atlas-connection-uri
 ▶️ Run the App Locally
 node server.js
-Visit http://localhost:3000 in your browser.
+Visit http://localhost:3000 in your browser.```
 
 
 🔗 Live Website
