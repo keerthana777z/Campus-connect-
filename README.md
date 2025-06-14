@@ -46,7 +46,8 @@ Key styling features:
 - Mobile-first design approach
 - Reusable class patterns for maintainability
 - Cross-browser compatibility
-- Clean structure optimized for performance
+- Clean structure optimized for performance.
+  
 Feel free to explore the `style.css` file to understand how visual consistency is maintained throughout the application.
 
 
