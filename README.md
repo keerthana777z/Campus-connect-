@@ -92,11 +92,9 @@ Visit http://localhost:3000 in your browser.
 
 
 📄 License
-
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 👩‍💻 Author
-
 AR Keerthana
-GitHub: @keerthana777z
+https://github.com/keerthana777z
 
