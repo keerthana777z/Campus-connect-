@@ -1,3 +1,4 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="images/favicon.png" type="image/png" />
-  <script>
-    if (localStorage.getItem('user')) {
-      window.location.href = 'index.html';
-    }
-  </script>
 </head>
 <body class="auth-page with-video">
   <video autoplay muted loop id="bg-video">
@@ -26,6 +22,7 @@
       <label>Email</label>
     </div>
     <div class="input-group">
+      <i class="fas fa-lock"></i>
       <input name="password" type="password" required />
       <label>Password</label>
     </div>
@@ -34,29 +31,36 @@
   </form>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async e => {
+    if (localStorage.getItem('user')) {
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
 
-      const res = await fetch('/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: form.email.value,
-          password: form.password.value
-        })
-      });
+      try {
+        const res = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: form.email.value,
+            password: form.password.value
+          })
+        });
 
-      const result = await res.json();
-      const status = document.getElementById('login-status');
+        const result = await res.json();
+        const status = document.getElementById('login-status');
 
-      if (res.ok) {
-        // Save full user info in localStorage (expects result.user.name)
-        localStorage.setItem('user', JSON.stringify(result.user));
-        status.textContent = '✅ Login successful! Redirecting...';
-        window.location.href = 'index.html';
-      } else {
-        status.textContent = result.error || 'Login failed';
+        if (res.ok && result.user) {
+          localStorage.setItem('user', JSON.stringify(result.user));
+          status.textContent = '✅ Login successful! Redirecting...';
+          window.location.href = 'index.html';
+        } else {
+          status.textContent = result.error || 'Login failed';
+        }
+      } catch (err) {
+        document.getElementById('login-status').textContent = '⚠️ Error connecting to server';
       }
     });
   </script>

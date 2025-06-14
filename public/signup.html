@@ -1,64 +1,73 @@
+<!-- signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up - Campus Connect</title>
+  <title>Signup - Campus Connect</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="images/favicon.png" type="image/png" />
-
 </head>
 <body class="auth-page with-video">
   <video autoplay muted loop id="bg-video">
     <source src="images/rainbow.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
-</body>
 
   <form id="signupForm" class="auth-form">
-    <h2>Sign Up</h2>
+    <h2>Signup</h2>
     <div class="input-group">
+      <i class="fas fa-user"></i>
       <input name="name" type="text" required />
       <label>Name</label>
     </div>
-    
     <div class="input-group">
       <i class="fas fa-envelope"></i>
       <input name="email" type="email" required />
       <label>Email</label>
     </div>
     <div class="input-group">
+      <i class="fas fa-lock"></i>
       <input name="password" type="password" required />
       <label>Password</label>
     </div>
-    
-    <button type="submit" class="glow-button">Register</button>
+    <button type="submit" class="glow-button">Signup</button>
     <p id="signup-status"></p>
   </form>
 
   <script>
-    document.getElementById('signupForm').addEventListener('submit', async e => {
+    if (localStorage.getItem('user')) {
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
-      const res = await fetch('/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name.value,
-          email: form.email.value,
-          password: form.password.value
-        })
-      });
 
-      const result = await res.json();
-      document.getElementById('signup-status').textContent = result.message || result.error;
+      try {
+        const res = await fetch('/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value,
+            email: form.email.value,
+            password: form.password.value
+          })
+        });
 
-      if (res.ok) {
-        document.getElementById('signup-status').textContent = 'Registered successfully!';
-        form.reset();
-        setTimeout(() => {
-          window.location.href = 'login.html';
-        }, 1500);
+        const result = await res.json();
+        const status = document.getElementById('signup-status');
+
+        if (res.ok) {
+          status.textContent = '✅ Signup successful! Redirecting to login...';
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 1000);
+        } else {
+          status.textContent = result.error || 'Signup failed';
+        }
+      } catch (err) {
+        document.getElementById('signup-status').textContent = '⚠️ Error connecting to server';
       }
     });
   </script>
