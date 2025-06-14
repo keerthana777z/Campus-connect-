@@ -1,16 +1,4 @@
-Absolutely! Here's a beautiful, clean, and **developer-friendly README.md** file for your [`Campus-connect-`](https://github.com/keerthana777z/Campus-connect-) project. It includes:
 
-* ✅ Project intro
-* ✅ Features
-* ✅ Tech stack
-* ✅ Setup instructions
-* ✅ Live demo placeholder
-* ✅ Screenshots section
-* ✅ Contribution and contact info
-
----
-
-### 📄 `README.md` (copy this into your repo)
 
 ````md
 # 🎓 Campus Connect
