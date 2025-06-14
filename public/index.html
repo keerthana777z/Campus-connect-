@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Connect</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+
+  <!-- ✅ Block access if not logged in -->
+  <script>
+    const user = localStorage.getItem('user');
+    if (!user) {
+      window.location.href = 'welcome.html'; // ⛔ go back to welcome if not logged in
+    }
+  </script>
+</head>
+
+
+<body class="cava-theme">
+  <!-- ⭐ Stars Container -->
+  <div class="stars"></div>
+
+  <!-- ⭐ Stars Script -->
+  <script>
+    for (let i = 0; i < 60; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.querySelector('.stars').appendChild(star);
+    }
+  </script>
+
+  <!-- 🌠 Shooting Star Script -->
+  <script>
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.classList.add('shooting-star');
+      star.style.top = Math.random() * window.innerHeight / 2 + 'px';
+      star.style.left = Math.random() * window.innerWidth / 2 + 'px';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(star);
+  
+      setTimeout(() => {
+        star.remove();
+      }, 2500);
+    }
+  
+    // Trigger shooting stars every 3 seconds
+    setInterval(createShootingStar, 3000);
+  </script>
+  
+  <header>
+    <h1> Campus Connect</h1>
+    <p>Bringing students, events, and notes together in one place!</p>
+    <nav>
+      <a href="#" onclick="showSection('home')">Home</a>
+      <a href="#" onclick="showSection('notes')">Notes</a>
+      <a href="#" onclick="showSection('events')">Events</a>
+      <a href="#" onclick="showSection('profile')">Profile</a>
+      
+    </nav>
+  </header>
+
+  <section id="home" class="page-section active">
+    <div class="carousel-section">
+      <div class="welcome-overlay">
+        <h2 id="greeting">Heyyy Welcome</h2>
+
+        <p>Your one-stop hub for campus updates.</p>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <img src="images/img1.jpg" alt="Slide 1" />
+          <img src="images/img2.jpg" alt="Slide 2" />
+          <img src="images/img3.jpg" alt="Slide 3" />
+          <img src="images/img4.jpg" alt="Slide 4" />
+          <img src="images/img1.jpg" alt="Slide 1 Clone" />
+          <img src="images/img2.jpg" alt="Slide 2 Clone" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="notes" class="page-section">
+    <h2>Notes</h2>
+  
+    <div class="notes-options" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+      <button onclick="showNotesSection('search')" style="padding: 10px 20px; border: none; background-color: #7c3aed; color: white; border-radius: 8px;">Search Notes</button>
+      <button onclick="showNotesSection('upload')" style="padding: 10px 20px; border: none; background-color: #7c3aed; color: white; border-radius: 8px;">Upload Notes</button>
+      <button onclick="showNotesSection('view')" style="padding: 10px 20px; border: none; background-color: #7c3aed; color: white; border-radius: 8px;">View Uploaded Notes</button>
+    </div>
+  
+    <div id="search-notes" class="notes-subsection" style="display: none; text-align: center;">
+      <input type="text" id="searchSubject" placeholder="Search for a subject..." 
+             style="padding: 10px; width: 300px; border-radius: 8px; border: none; margin-right: 10px;" />
+      <button onclick="searchNotes()" 
+              style="padding: 10px 20px; background-color: #9f7aea; color: white; border: none; border-radius: 8px;">
+        Search
+      </button>
+      <p id="searchResult" style="margin-top: 10px; color: white;"></p>
+    </div>
+    
+  
+   <!-- ✅ Upload Notes Section -->
+<div id="upload-notes" class="notes-subsection" style="display: none;">
+  <form id="uploadForm" enctype="multipart/form-data" style="max-width: 500px; margin: auto; padding: 20px;">
+    <input type="text" name="subject" placeholder="Subject Name" required style="width: 100%; padding: 10px; margin-bottom: 10px;" />
+    <input type="file" name="file" required style="width: 100%; padding: 10px; margin-bottom: 10px;" />
+    <button type="submit" style="width: 100%; padding: 12px;">Upload</button>
+  </form>
+  <p id="upload-status" style="text-align: center; color: white; margin-top: 10px;"></p>
+</div>
+
+    
+    
+  
+    <div id="view-notes" class="notes-subsection" style="display: none; display: flex; justify-content: center; margin-top: 30px;">
+        <div style="text-align: center;">
+            <table style="width: 80%; margin: auto; border-collapse: collapse; background-color: #1e1b4b; color: white; border-radius: 12px; overflow: hidden;">
+              <thead>
+                <tr style="background-color: #6d28d9;">
+                  <th style="padding: 12px 24px;">Subject</th>
+                  <th style="padding: 12px 24px;">File</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px 24px;">Math</td>
+                  <td style="padding: 12px 24px;"><a href="math-notes.pdf" style="color: #c4b5fd;">math-notes.pdf</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 24px;">Physics</td>
+                  <td style="padding: 12px 24px;"><a href="physics.pdf" style="color: #c4b5fd;">physics.pdf</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          
+    </div>
+  </section>
+  
+  
+
+  <section id="events" class="page-section">
+    <h2 style="text-align: center;">Campus Events</h2>
+    <div class="events-container">
+      <div class="event-card">
+        <h3>Tech Fest 2025</h3>
+        <p>Date: July 10, 2025</p>
+        <p>Fee: ₹200</p>
+      </div>
+      <div class="event-card">
+        <h3>Workshop: AI in Healthcare</h3>
+        <p>Date: July 15, 2025</p>
+        <p>Fee: ₹150</p>
+      </div>
+      <div class="event-card">
+        <h3>Cultural Night</h3>
+        <p>Date: July 18, 2025</p>
+        <p>Fee: Free</p>
+      </div>
+      <div class="event-card">
+        <h3>Hackathon: CodeSprint</h3>
+        <p>Date: July 20, 2025</p>
+        <p>Fee: ₹300</p>
+      </div>
+      <div class="event-card">
+        <h3>Guest Lecture: Data Science</h3>
+        <p>Date: July 25, 2025</p>
+        <p>Fee: ₹100</p>
+      </div>
+      <div class="event-card">
+        <h3>Startup Pitch Day</h3>
+        <p>Date: July 28, 2025</p>
+        <p>Fee: ₹250</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="profile" class="page-section">
+    <h2>My Profile</h2>
+    <img src="images/student.jpg" class="student-img" alt="Student">
+    <p id="profileName">Name: </p>
+
+    <p>Course: B.Tech CSE</p>
+    <button onclick="logout()" style="margin-top: 20px; padding: 10px 20px; font-size: 16px;">Logout</button>
+
+  </section>
+
+
+
+  <footer>
+    <p>© 2025 Campus Connect | Made by Keerthana</p>
+  </footer>
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      if (sectionId === 'notes') {
+        document.querySelectorAll('.notes-subsection').forEach(sec => sec.style.display = 'none');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      window.location.href = 'welcome.html';
+    }
+
+    function showNotesSection(type) {
+      document.querySelectorAll('.notes-subsection').forEach(section => section.style.display = 'none');
+      if (type === 'search') {
+        document.getElementById('search-notes').style.display = 'block';
+      } else if (type === 'upload') {
+        document.getElementById('upload-notes').style.display = 'block';
+      } else if (type === 'view') {
+        document.getElementById('view-notes').style.display = 'block';
+        fetch('http://localhost:3000/get-uploaded-notes')
+          .then(res => res.json())
+          .then(notes => {
+            const tbody = document.querySelector('#view-notes table tbody');
+            tbody.innerHTML = '';
+            notes.forEach(note => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `<td>${note.subject || 'Unknown'}</td><td><a href="${note.url}" target="_blank">${note.filename || 'Unnamed file'}</a></td>`;
+              tbody.appendChild(tr);
+            });
+          })
+          .catch(err => console.error('❌ Failed to load notes:', err));
+      }
+    }
+
+    function searchNotes() {
+      const subject = document.getElementById('searchSubject').value.trim();
+      const result = document.getElementById('searchResult');
+      if (!subject) {
+        result.textContent = 'Please enter a subject to search.';
+        return;
+      }
+      fetch(`http://localhost:3000/search-notes?subject=${subject}`)
+        .then(res => res.json())
+        .then(data => {
+          result.textContent = data.length > 0 ? '✅ Notes available!' : '❌ No notes found for this subject.';
+        })
+        .catch(() => {
+          result.textContent = '⚠️ Server not reachable.';
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById('uploadForm');
+      const user = JSON.parse(localStorage.getItem('user'));
+      const name = user?.name || 'Guest';
+      document.getElementById('greeting').textContent = `Heyyy ${name}, welcome!`;
+      document.getElementById('profileName').textContent = `Name: ${name}`;
+
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        try {
+          const response = await fetch('http://localhost:3000/upload-notes', {
+            method: 'POST',
+            body: formData
+          });
+          const result = await response.json();
+          const status = document.getElementById('upload-status');
+          if (response.ok) {
+            status.textContent = `✅ ${result.message} - ${result.filename}`;
+            form.reset();
+          } else {
+            status.textContent = result.error || 'Upload failed.';
+          }
+        } catch (error) {
+          document.getElementById('upload-status').textContent = 'Server not reachable!';
+        }
+      });
+    });
+  </script>
+
+
+  
+</body>
+</html>

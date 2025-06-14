@@ -1,0 +1,97 @@
+// server.js
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const fs = require('fs');
+
+const app = express();
+
+// MongoDB connection
+mongoose.connect('mongodb://127.0.0.1:27017/campusconnect', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
+
+// Load models
+const Note = require('./models/Note');
+
+// Middleware
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'GET'],
+  credentials: true
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Multer storage config
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+});
+const upload = multer({ storage });
+
+// Upload Notes to DB
+app.post('/upload-notes', upload.single('file'), async (req, res) => {
+  const { subject } = req.body;
+  const file = req.file;
+
+  if (!file) {
+    return res.status(400).json({ error: 'No file uploaded.' });
+  }
+
+  try {
+    const note = new Note({
+      subject,
+      filename: file.originalname,
+      url: `http://localhost:3000/uploads/${file.filename}`
+    });
+
+    await note.save();
+    res.status(200).json({
+      message: '✅ File uploaded successfully!',
+      filename: note.filename,
+      subject: note.subject,
+      url: note.url
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get all notes from DB
+app.get('/get-uploaded-notes', async (req, res) => {
+  try {
+    const notes = await Note.find();
+    res.json(notes);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch notes' });
+  }
+});
+
+// Search notes by subject
+app.get('/search-notes', async (req, res) => {
+  const { subject } = req.query;
+  try {
+    const notes = await Note.find({
+      subject: { $regex: subject, $options: 'i' }
+    });
+    res.json(notes);
+  } catch (error) {
+    res.status(500).json({ error: 'Search failed' });
+  }
+});
+
+// Health check
+app.get('/', (req, res) => res.send('✅ Backend is running!'));
+
+// Start server
+app.listen(3000, () => {
+  console.log('🚀 Server running at http://localhost:3000');
+});
