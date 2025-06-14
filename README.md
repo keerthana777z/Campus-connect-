@@ -1,110 +1,49 @@
-
-
-````md
 # 🎓 Campus Connect
 
-**Campus Connect** is a full-stack web application designed to streamline campus life. From uploading notes and accessing resources to connecting students with essential updates — everything is just a click away.
-
-![Campus Connect Banner](https://via.placeholder.com/1000x300.png?text=Campus+Connect)
+Welcome to **Campus Connect** — a full-stack platform designed to make student life easier. Upload notes, access resources, and stay updated — all in one place.
 
 ---
 
-## 🚀 Live Demo
+## 💻 Tech Stack
 
-🔗 [View Live Project](https://your-deployed-url.onrender.com)  
-*(replace with actual URL after deployment)*
-
----
-
-## ✨ Features
-
-- 📁 Upload and download notes
-- 🔐 User Authentication (Signup/Login)
-- 🧠 Easy-to-use UI for students
-- 🗂️ Organized resources
-- 🌐 Hosted on Render with MongoDB Atlas
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Node.js, Express
+- **Database:** MongoDB (Atlas)
+- **Authentication:** express-session, bcrypt
+- **Hosting:** Render
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features
 
-| Tech | Description |
-|------|-------------|
-| **Frontend** | HTML, CSS, JavaScript |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB (Atlas) |
-| **Authentication** | express-session, bcrypt |
-| **Deployment** | Render (Backend), MongoDB Atlas (DB) |
+- 📤 Upload academic notes
+- 🔐 Login / Signup with secure sessions
+- 🌍 Access resources from anywhere
+- 💾 MongoDB Cloud for storage
 
 ---
 
-## 📸 Screenshots
+## 📷 Preview
 
-> Add screenshots from your project (`/screenshots` folder) for a visual touch.
+> *(Add screenshots from your project here)*
 
-| Homepage | Notes Upload |
-|---------|--------------|
-| ![Home](https://via.placeholder.com/400x250.png?text=Home) | ![Upload](https://via.placeholder.com/400x250.png?text=Upload+Notes) |
+![Home Page Preview](https://via.placeholder.com/800x400?text=Campus+Connect+Preview)
 
 ---
 
-## ⚙️ How to Run Locally
+## 🛠️ Getting Started
+
+Follow these steps to run locally:
 
 ```bash
-# 1. Clone the repository
+# Clone the repo
 git clone https://github.com/keerthana777z/Campus-connect-.git
 
-# 2. Navigate to the folder
+# Go into the project directory
 cd Campus-connect-
 
-# 3. Install dependencies
+# Install dependencies
 npm install
 
-# 4. Create a .env file
-touch .env
-````
-
-Add the following to `.env`:
-
-```env
-PORT=3000
-MONGO_URI=your_mongodb_atlas_uri
-```
-
-```bash
-# 5. Start the server
-node server.js
-```
-
-Visit: `http://localhost:3000`
-
----
-
-
-## 🤝 Contributing
-
-Contributions are welcome!
-If you’d like to improve UI, add features, or fix bugs:
-
-```bash
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature-name`)
-3. Commit your changes (`git commit -m 'Add feature'`)
-4. Push to the branch (`git push origin feature-name`)
-5. Open a Pull Request
-```
-
----
-
-## 👩‍💻 Author
-
- **Keerthana**
-
-
----
-
-## 🧾 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
+⚙️ Create a .env file
 
